@@ -1,0 +1,124 @@
+<div class="page-header">
+    <h3 class="page-title">
+      Leaves Request
+    </h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <!-- <li class="breadcrumb-item"><a href="javascript:;">Tables</a></li> -->
+        <li class="breadcrumb-item active" aria-current="page">Leaves</li>
+      </ol>
+    </nav>
+  </div>
+<div class="row">
+  <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex mb-1">
+          <div class="container-fluid bg-gradient-dark-cus py-2">
+            <!-- <div class="mb-0 text-white p-2"><h4 class="card-title mt-4">Leaves Request</h4></div> -->
+            <label class="mb-0 text-white mt-2">Leaves Request</label>
+            <button class="btn btn-light btn-icon-text btn-sm float-right" type="button" (click)="addleave()">
+              <i class="mdi mdi-plus btn-icon-plus"></i>
+              Leave
+            </button>
+            <button class="btn btn-light btn-icon-text btn-sm float-right" type="button" (click)="leaveBanlence()">
+              <i class="mdi mdi-briefcase btn-icon-briefcase"></i>
+              Leave Balance
+            </button>
+          </div>
+        </div>
+        
+        <ngb-accordion [closeOthers]="true" activeIds="collapse-13" class="accordion-solid-header accordion">
+          <ngb-panel id="collapse-13" title="PENDINGS LEAVES">
+            <ng-template ngbPanelContent>
+              <div class="row">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>No</th>
+                        <th>ManagerCode</th>
+                        <th>ManagerName</th>
+                        <th>Leave</th>
+                        <th>Manager Status</th>
+                        <th>Session I</th>
+                        <th>Session II</th>
+                        <th>Days</th>
+                        <th>From Date</th>
+                        <th>ToDate</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of pendingList; let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{item.managercode}}</td>
+                        <td>{{item.managername}}</td>
+                        <td>{{item.leavename}}</td>
+                        <td>{{item.managerstatus}}</td>
+                        <td>{{item.sessionI}}</td>
+                        <td>{{item.sessionII}}</td>
+                        <td>{{item.days}}</td>
+                        <td>{{item.fr_date}}</td>
+                        <td>{{item.to_date}}</td>
+                        <td class="text-center"><button type="button" class="btn btn-sm btn-danger"><i class="mdi mdi-delete btn-icon-briefcase"></i></button></td>
+                        <!-- <td class="text-center" colspan="4">No records found</td> -->
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel id="collapse-14" title="APPROVAL LEAVES">
+            <ng-template ngbPanelContent>
+              <div class="row">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>No</th>
+                        <th>ManagerCode</th>
+                        <th>ManagerName</th>
+                        <th>Leave</th>
+                        <th>Manager Status</th>
+                        <th>Session I</th>
+                        <th>Session II</th>
+                        <th>Days</th>
+                        <th>From Date</th>
+                        <th>ToDate</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of approvalList; let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{item.managercode}}</td>
+                        <td>{{item.managername}}</td>
+                        <td>{{item.leavename}}</td>
+                        <td>{{item.managerstatus}}</td>
+                        <td>{{item.sessionI}}</td>
+                        <td>{{item.sessionII}}</td>
+                        <td>{{item.days}}</td>
+                        <td>{{item.fr_date}}</td>
+                        <td>{{item.to_date}}</td>
+                        <!-- <td class="text-center" colspan="4">No records found</td> -->
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+          <!-- <ngb-panel id="collapse-15" title="Can I add money to the wallet?">
+            <ng-template ngbPanelContent>
+              You can add money to the wallet for any future transaction from your bank account using net-banking, or credit/debit card transaction. The money in the wallet can be used for an easier and faster transaction.                
+            </ng-template>
+          </ngb-panel> -->
+        </ngb-accordion>
+      </div>
+     
+    </div>
+  </div>
+</div>

@@ -1,0 +1,362 @@
+<div class="horizontal-menu">
+  <nav class="navbar top-navbar col-lg-12 col-12 p-0">
+    <div class="container">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo" routerLink="/"><img src="assets/images/pace-logo.svg" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" routerLink="/"><img src="assets/images/logo-mini.svg" alt="logo"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="mdi mdi-magnify"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search projects" aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item nav-profile dropdown" ngbDropdown>
+            <a class="nav-link dropdown-toggle" id="profileDropdown" ngbDropdownToggle>
+              <div class="nav-profile-img">
+                <img src="assets/images/faces/face1.jpg" alt="image">
+                <span class="availability-status online"></span>
+              </div>
+              <div class="nav-profile-text">
+                <p class="mb-1" translate>{{person?.emp_name}}</p>
+              </div>
+            </a>
+            <div class="dropdown-menu navbar-dropdown" ngbDropdownMenu aria-labelledby="profileDropdown">
+              <!-- <a class="dropdown-item" href="javascript:;" translate>
+                <i class="mdi mdi-cached mr-2 text-success"></i>
+                Activity Log
+              </a> -->
+              <!-- <div class="dropdown-divider"></div> -->
+              <a class="dropdown-item" href="javascript:;" (click)="logOut()" translate>
+                <i class="mdi mdi-logout mr-2 text-primary"></i>
+                Signout
+              </a>
+            </div>
+          </li>
+          <!-- <li class="nav-item dropdown" ngbDropdown>
+            <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" ngbDropdownToggle>
+              <i class="mdi mdi-email-outline"></i>
+              <span class="count-symbol bg-warning"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" ngbDropdownMenu aria-labelledby="messageDropdown">
+              <h6 class="p-3 mb-0" translate>Messages</h6>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="assets/images/faces/face4.jpg" alt="image" class="profile-pic">
+                </div>
+                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                  <h6 class="preview-subject ellipsis mb-1 font-weight-normal" translate>Mark send you a message</h6>
+                  <p class="text-gray mb-0" translate>1 Minutes ago</p>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="assets/images/faces/face2.jpg" alt="image" class="profile-pic">
+                </div>
+                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                  <h6 class="preview-subject ellipsis mb-1 font-weight-normal" translate>Cregh send you a message</h6>
+                  <p class="text-gray mb-0" translate>15 Minutes ago</p>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="assets/images/faces/face3.jpg" alt="image" class="profile-pic">
+                </div>
+                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                  <h6 class="preview-subject ellipsis mb-1 font-weight-normal" translate>Profile picture updated</h6>
+                  <p class="text-gray mb-0" translate>18 Minutes ago</p>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <h6 class="p-3 mb-0 text-center" translate>4 new messages</h6>
+            </div>
+          </li> -->
+          <li class="nav-item dropdown" ngbDropdown>
+            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" ngbDropdownToggle>
+              <i class="mdi mdi-bell-outline"></i>
+              <span class="count-symbol bg-danger"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" ngbDropdownMenu aria-labelledby="notificationDropdown">
+              <h6 class="p-3 mb-0" translate>Notifications</h6>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-success">
+                    <i class="mdi mdi-calendar"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                  <h6 class="preview-subject font-weight-normal mb-1" translate>Event today</h6>
+                  <p class="text-gray ellipsis mb-0" translate>Just a reminder that you have an event today</p>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-warning">
+                    <i class="mdi mdi-cog"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                  <h6 class="preview-subject font-weight-normal mb-1" translate>Settings</h6>
+                  <p class="text-gray ellipsis mb-0" translate>Update dashboard</p>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-info">
+                    <i class="mdi mdi-link-variant"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                  <h6 class="preview-subject font-weight-normal mb-1" translate>Launch Admin</h6>
+                  <p class="text-gray ellipsis mb-0" translate>New admin wow!</p>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <h6 class="p-3 mb-0 text-center" translate>See all notifications</h6>
+            </div>
+          </li>
+          <li class="nav-item nav-logout d-none d-lg-block">
+            <a class="nav-link" href="javascript:;"  (click)="logOut()">
+              <i class="mdi mdi-power"></i>
+            </a>
+          </li>
+          <!-- <li class="nav-item nav-settings d-none d-lg-block" (click)="toggleRightSidebar()">
+            <a class="nav-link">
+              <i class="mdi mdi-format-line-spacing"></i>
+            </a>
+          </li> -->
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="horizontal-menu-toggle" (click)="toggleRightSidebar()">
+          <span class="mdi mdi-menu"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <nav class="bottom-navbar">
+    <div class="container">
+      <ul class="nav page-navigation">
+        <li class="nav-item" [ngClass]="{ 'active': dashboard.isActive }">
+          <a class="nav-link" routerLink="/dashboard" routerLinkActive #dashboard="routerLinkActive">
+            <i class="mdi mdi-home menu-icon"></i>
+            <span class="menu-title" translate>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item" [ngClass]="{ 'active': leaves.isActive }">
+          <a class="nav-link" routerLink="/leaves" routerLinkActive #leaves="routerLinkActive">
+            <i class="mdi mdi-view-agenda menu-icon"></i>
+            <span class="menu-title" translate>Leaves</span>
+          </a>
+        </li>
+        <li class="nav-item" [ngClass]="{ 'active': attendance.isActive }">
+          <a class="nav-link" routerLink="/attendance" routerLinkActive #attendance="routerLinkActive">
+            <i class="mdi mdi-view-week menu-icon"></i>
+            <span class="menu-title" translate>Attendance</span>
+          </a>
+        </li>
+        <!-- <li class="nav-item mega-menu" [ngClass]="{'active' : accordions.isActive || buttons.isActive || badges.isActive || breadcrumbs.isActive || dropdowns.isActive || modals.isActive || progressbar.isActive || pagination.isActive || tabs.isActive || typography.isActive || tooltips.isActive || dragula.isActive || clipboard.isActive || contextMenu.isActive || slider.isActive || carousel.isActive || loaders.isActive || flagIcons.isActive || mdi.isActive || fontAwesome.isActive || simpleLineIcons.isActive || themify.isActive }">
+          <a href="javascript:;" class="nav-link">
+            <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+            <span class="menu-title" translate>UI Elements</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="submenu">
+            <div class="col-group-wrapper row">
+              <div class="col-group col-md-4">
+                <div class="row">
+                  <div class="col-12">
+                    <p class="category-heading" translate>Basic Elements</p>
+                    <div class="submenu-item">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <ul>
+                            <li class="nav-item"><a class="nav-link" routerLink="basic-ui/accordions" routerLinkActive="active" #accordions="routerLinkActive" translate>Accordions</a></li>
+                            <li class="nav-item"><a class="nav-link" routerLink="basic-ui/buttons" routerLinkActive="active" #buttons="routerLinkActive" translate>Buttons</a></li>
+                            <li class="nav-item"><a class="nav-link" routerLink="basic-ui/badges" routerLinkActive="active" #badges="routerLinkActive" translate>Badges</a></li>
+                            <li class="nav-item"><a class="nav-link" routerLink="basic-ui/breadcrumbs" routerLinkActive="active" #breadcrumbs="routerLinkActive" translate>Breadcrumbs</a></li>
+                            <li class="nav-item"><a class="nav-link" routerLink="basic-ui/dropdowns" routerLinkActive="active" #dropdowns="routerLinkActive" translate>Dropdowns</a></li>
+                            <li class="nav-item"><a class="nav-link" routerLink="basic-ui/modals" routerLinkActive="active" #modals="routerLinkActive" translate>Modals</a></li>
+                          </ul>
+                        </div>
+                        <div class="col-md-6">
+                          <ul>
+                            <li class="nav-item"><a class="nav-link" routerLink="basic-ui/progressbar" routerLinkActive="active" #progressbar="routerLinkActive" translate>Progress bar</a></li>
+                            <li class="nav-item"><a class="nav-link" routerLink="basic-ui/pagination" routerLinkActive="active" #pagination="routerLinkActive" translate>Pagination</a></li>
+                            <li class="nav-item"><a class="nav-link" routerLink="basic-ui/tabs" routerLinkActive="active" #tabs="routerLinkActive" translate>Tabs</a></li>
+                            <li class="nav-item"><a class="nav-link" routerLink="basic-ui/typography" routerLinkActive="active" #typography="routerLinkActive" translate>Typography</a></li>
+                            <li class="nav-item"><a class="nav-link" routerLink="basic-ui/tooltips" routerLinkActive="active" #tooltips="routerLinkActive" translate translate>Tooltips</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-group col-md-4">
+                <div class="row">
+                  <div class="col-12">
+                    <p class="category-heading" translate>Advanced Elements</p>
+                    <div class="submenu-item">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <ul>
+                            <li class="nav-item"><a class="nav-link" routerLink="advanced-ui/dragula" routerLinkActive="active" #dragula="routerLinkActive" translate>Dragula</a></li>
+                            <li class="nav-item"><a class="nav-link" routerLink="advanced-ui/carousel" routerLinkActive="active" #carousel="routerLinkActive" translate>Carousel</a></li>
+                            <li class="nav-item"><a class="nav-link" routerLink="advanced-ui/clipboard" routerLinkActive="active" #clipboard="routerLinkActive" translate>Clipboard</a></li>
+                            <li class="nav-item"><a class="nav-link" routerLink="advanced-ui/context-menu" routerLinkActive="active" #contextMenu="routerLinkActive" translate>Context menu</a></li>
+                            <li class="nav-item"><a class="nav-link" routerLink="advanced-ui/loaders" routerLinkActive="active" #loaders="routerLinkActive" translate>Loaders</a></li>
+                            <li class="nav-item"><a class="nav-link" routerLink="advanced-ui/slider" routerLinkActive="active" #slider="routerLinkActive" translate>Sliders</a></li>
+                          </ul>
+                        </div>
+                        <div class="col-md-6">
+                          <ul>
+                            <li class="nav-item"><a class="nav-link" routerLink="advanced-ui/popups" routerLinkActive="active" #popups="routerLinkActive" translate>Popups</a></li>
+                            <li class="nav-item"><a class="nav-link" routerLink="basic-ui/notifications" routerLinkActive="active" #notifications="routerLinkActive" translate>Notification</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-group col-md-4">
+                <p class="category-heading" translate>Icons</p>
+                <ul class="submenu-item">
+                  <li class="nav-item"><a class="nav-link" routerLink="icons/flag-icons" routerLinkActive="active" #flagIcons="routerLinkActive" translate>Flag icons</a></li>
+                  <li class="nav-item"> <a class="nav-link" routerLink="icons/mdi" routerLinkActive="active" #mdi="routerLinkActive" translate>Mdi icons</a></li>
+                  <li class="nav-item"><a class="nav-link" routerLink="icons/font-awesome" routerLinkActive="active" #fontAwesome="routerLinkActive" translate>Font Awesome</a></li>
+                  <li class="nav-item"><a class="nav-link" routerLink="icons/simple-line-icons" routerLinkActive="active" #simpleLineIcons="routerLinkActive" translate>Simple line icons</a></li>
+                  <li class="nav-item"><a class="nav-link" routerLink="icons/themify" routerLinkActive="active" #themify="routerLinkActive" translate>Themify icons</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item" [ngClass]="{ 'active' : basicElements.isActive || advancedElements.isActive || validation.isActive || wizard.isActive || textEditor.isActive || codeEditor.isActive }">
+          <a href="javascript:;" class="nav-link">
+            <i class="mdi mdi-clipboard-text menu-icon"></i>
+            <span class="menu-title" translate>Forms</span>
+            <i class="menu-arrow"></i></a>
+          <div class="submenu">
+            <ul class="submenu-item">
+              <li class="nav-item"><a class="nav-link" routerLink="forms/basic-elements" routerLinkActive="active" #basicElements="routerLinkActive" translate>Basic Elements</a></li>
+              <li class="nav-item"><a class="nav-link" routerLink="forms/advanced-elements" routerLinkActive="active" #advancedElements="routerLinkActive" translate>Advanced Elements</a></li>
+              <li class="nav-item"><a class="nav-link" routerLink="forms/validation" routerLinkActive="active" #validation="routerLinkActive" translate>Validation</a></li>
+              <li class="nav-item"><a class="nav-link" routerLink="forms/wizard" routerLinkActive="active" #wizard="routerLinkActive" translate>Wizard</a></li>
+              <li class="nav-item"><a class="nav-link" routerLink="editors/text-editor" routerLinkActive="active" #textEditor="routerLinkActive" translate>Text editors</a></li>
+              <li class="nav-item"><a class="nav-link" routerLink="editors/code-editor" routerLinkActive="active" #codeEditor="routerLinkActive" translate>Code editors</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item mega-menu">
+          <a href="javascript:;" class="nav-link" [ngClass]="{ 'active' : chartjs.isActive || morris.isActive || chartist.isActive || basicTable.isActive || dataTable.isActive || googleMaps.isActive }">
+            <i class="mdi mdi-chart-bar menu-icon"></i>
+            <span class="menu-title" translate>Data</span>
+            <i class="menu-arrow"></i></a>
+          <div class="submenu">
+            <div class="col-group-wrapper row">
+              <div class="col-group col-md-3">
+                <p class="category-heading" translate>Charts</p>
+                <ul class="submenu-item">
+                  <li class="nav-item"><a class="nav-link" routerLink="charts/chartjs" routerLinkActive="active" #chartjs="routerLinkActive" translate>ChartJs</a></li>
+                  <li class="nav-item"><a class="nav-link" routerLink="charts/morris" routerLinkActive="active" #morris="routerLinkActive" translate>Morris</a></li>
+                  <li class="nav-item"><a class="nav-link" routerLink="charts/chartist" routerLinkActive="active" #chartist="routerLinkActive" translate>Chartist</a></li>
+                </ul>
+              </div>
+              <div class="col-group col-md-3">
+                <p class="category-heading" translate>Table</p>
+                <ul class="submenu-item">
+                  <li class="nav-item"><a class="nav-link" routerLink="tables/basic-table" routerLinkActive="active" #basicTable="routerLinkActive" translate>Basic table</a></li>
+                  <li class="nav-item"><a class="nav-link" routerLink="tables/data-table" routerLinkActive="active" #dataTable="routerLinkActive" translate>Data table</a></li>
+                </ul>
+              </div>
+              <div class="col-group col-md-3">
+                <p class="category-heading" translate>Maps</p>
+                <ul class="submenu-item">
+                  <li class="nav-item"><a class="nav-link" routerLink="maps/google-map" routerLinkActive="active" #googleMaps="routerLinkActive">Google map</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item mega-menu" [ngClass]="{ 'active' : login.isActive || login2.isActive || register.isActive || register2.isActive || lockScreen.isActive || error404.isActive || error500.isActive || invoice.isActive || pricing.isActive || orders.isActive || profile.isActive || faq.isActive ||  newsGrid.isActive || timeline.isActive || searchResult.isActive || portfolio.isActive }">
+          <a href="javascript:;" class="nav-link">
+            <i class="mdi mdi-content-copy menu-icon"></i>
+            <span class="menu-title" translate>Sample Pages</span>
+            <i class="menu-arrow"></i></a>
+          <div class="submenu">
+            <div class="col-group-wrapper row">
+              <div class="col-group col-md-3">
+                <p class="category-heading" translate>User Pages</p>
+                <ul class="submenu-item">
+                  <li class="nav-item"><a class="nav-link" routerLink="user-pages/login" routerLinkActive="active" #login="routerLinkActive" translate>Login</a></li>
+                  <li class="nav-item"><a class="nav-link" routerLink="user-pages/login-2" routerLinkActive="active" #login2="routerLinkActive" translate>Login 2</a></li>
+                  <li class="nav-item"><a class="nav-link" routerLink="user-pages/register" routerLinkActive="active" #register="routerLinkActive" translate>Register</a></li>
+                  <li class="nav-item"><a class="nav-link" routerLink="user-pages/register-2" routerLinkActive="active" #register2="routerLinkActive" translate>Register 2</a></li>
+                  <li class="nav-item"><a class="nav-link" routerLink="user-pages/lock-screen" routerLinkActive="active" #lockScreen="routerLinkActive" translate>Lockscreen</a></li>
+                </ul>
+              </div>
+              <div class="col-group col-md-3">
+                <p class="category-heading" translate>Error Pages</p>
+                <ul class="submenu-item">
+                  <li class="nav-item"><a class="nav-link" routerLink="error-pages/404" routerLinkActive="active" #error404="routerLinkActive">404</a></li>
+                  <li class="nav-item"><a class="nav-link" routerLink="error-pages/500" routerLinkActive="active" #error500="routerLinkActive">500</a></li>
+                </ul>
+              </div>
+              <div class="col-group col-md-3">
+                <p class="category-heading" translate>E-commerce</p>
+                <ul class="submenu-item">
+                  <li class="nav-item"><a class="nav-link" routerLink="ecommerce/invoice" routerLinkActive="active" #invoice="routerLinkActive" translate>Invoice</a></li>
+                  <li class="nav-item"><a class="nav-link" routerLink="ecommerce/pricing" routerLinkActive="active" #pricing="routerLinkActive" translate>Pricing Table</a></li>
+                  <li class="nav-item"><a class="nav-link" routerLink="ecommerce/orders" routerLinkActive="active" #orders="routerLinkActive" translate>Orders</a></li>
+                </ul>
+              </div>
+              <div class="col-group col-md-3">
+                <p class="category-heading" translate>General</p>
+                <ul class="submenu-item">
+                  <li class="nav-item"><a class="nav-link" routerLink="general-pages/search-results" routerLinkActive="active" #searchResult="routerLinkActive" translate>Search Results</a></li>
+                  <li class="nav-item"><a class="nav-link" routerLink="general-pages/profile" routerLinkActive="active" #profile="routerLinkActive" translate>Profile</a></li>
+                  <li class="nav-item"><a class="nav-link" routerLink="general-pages/timeline" routerLinkActive="active" #timeline="routerLinkActive" translate>Timeline</a></li>
+                  <li class="nav-item"><a class="nav-link" routerLink="general-pages/news-grid" routerLinkActive="active" #newsGrid="routerLinkActive" translate>News grid</a></li>
+                  <li class="nav-item"><a class="nav-link" routerLink="general-pages/portfolio" routerLinkActive="active" #portfolio="routerLinkActive" translate>Portfolio</a></li>
+                  <li class="nav-item"><a class="nav-link" routerLink="general-pages/faq" routerLinkActive="active" #faq="routerLinkActive" translate>FAQ</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item" [ngClass]="{ 'active' : email.isActive || calendar.isActive }">
+          <a href="javascript:;" class="nav-link">
+            <i class="mdi mdi-webpack menu-icon"></i>
+            <span class="menu-title" translate>Apps</span>
+            <i class="menu-arrow"></i></a>
+          <div class="submenu">
+            <ul class="submenu-item">
+              <li class="nav-item"><a class="nav-link" routerLink="apps/email" routerLinkActive="active" #email="routerLinkActive" translate>Email</a></li>
+              <li class="nav-item"><a class="nav-link" routerLink="apps/calendar" routerLinkActive="active" #calendar="routerLinkActive" translate>Calendar</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://bootstrapdash.com/demo/purple/angular/documentation/documentation.html" target="_blank">
+            <i class="mdi mdi-file-document menu-icon"></i>
+            <span class="menu-title" translate>Documentation</span>
+          </a>
+        </li> -->
+      </ul>
+    </div>
+  </nav>
+</div>

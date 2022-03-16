@@ -1,0 +1,108 @@
+<div class="page-header">
+  <h3 class="page-title">
+    Attendance
+  </h3>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <!-- <li class="breadcrumb-item"><a href="javascript:;">Forms</a></li> -->
+      <li class="breadcrumb-item active" aria-current="page">attendance</li>
+    </ol>
+  </nav>
+</div>
+<div class="grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Attendance</h4>
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-8">
+            <!-- <p class="card-description">Add class <code>.btn-icon</code> for buttons with only icons</p> -->
+            <div class="template-demo d-flex justify-content-between flex-nowrap">
+              <div class="wt-icon-circle">
+                <button type="button" class="btn btn-gradient-primary btn-rounded btn-icon" (click)="openPunchModal()">
+                  <i class="mdi mdi-home-outline"></i>
+                </button>
+                <p class="mt-2"> Punch Forgot</p>
+              </div>
+              <div class="wt-icon-circle">
+                <button type="button" class="btn btn-gradient-dark btn-rounded btn-icon" (click)="openSwipeModal()">
+                  <i class="mdi mdi mdi-cube"></i>
+                </button>
+                <p class="mt-2"> Swipe Forgot</p>
+              </div>
+              <div class="wt-icon-circle">
+                <button type="button" class="btn btn-gradient-danger btn-rounded btn-icon" (click)="openWHModal()">
+                  <i class="mdi mdi-email-open"></i>
+                </button>
+                <p class="mt-2"> WH Change</p>
+              </div>
+              <div class="wt-icon-circle">
+                <button type="button" class="btn btn-gradient-info btn-rounded btn-icon" (click)="openShiftModal()">
+                  <i class="mdi mdi-star"></i>
+                </button>
+                <p class="mt-2"> Shift Change</p>
+              </div>
+              <div class="wt-icon-circle">
+                <button type="button" class="btn btn-gradient-success btn-rounded btn-icon" (click)="openPermissionModal()">
+                  <i class="mdi mdi-map-marker"></i>
+                </button>
+                <p class="mt-2"> Permission</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="row">
+  <div class="col-lg-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex">
+            <div class="mr-auto p-2"><h4 class="card-title mt-4">Employee Attendance</h4></div>
+            <!-- <div class="p-2"> 
+              <button class="btn btn-info btn-icon-text" type="button" (click)="addleave()">
+                <i class="mdi mdi-file-check btn-icon-plus"></i>
+                Leave
+              </button>
+            </div>
+            <div class="p-2">
+              <button class="btn btn-info btn-icon-text" type="button" (click)="leaveBanlence()">
+                <i class="mdi mdi-briefcase btn-icon-briefcase"></i>
+                Leave Balance
+              </button>
+            </div> -->
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Code</th>
+                  <th>Name</th>
+                  <th>Intime</th>
+                  <th>Outtime</th>
+                  <th>Date</th>
+                  <th>Shiftcode</th>
+                  <th>Towork</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of attendanceList; let i=index;">
+                  <td>{{i+1}}</td>
+                  <td>{{item.empcode}}</td>
+                  <td>{{item.emp_name}}</td>
+                  <td>{{item.in1}}</td>
+                  <td>{{item.out1}}</td>
+                  <td>{{item.pdate}}</td>
+                  <td>{{item.shiftcode}}</td>
+                  <td>{{item.tothrswork}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,108 @@
+<div class="modal-content">
+    <div class="modal-header bg-gradient-success-cus">
+      <h4 class="modal-title" id="exampleModalLabel">Permission Request</h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="col-12 grid-margin"> 
+      <form class="forms-sample" [formGroup]="swipeForm" (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+          <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="lbCode">Employee Code<span class="star">*</span></label>
+                  <input type="text" formControlName="empCode" class="form-control form-control form-control-lg"  id="lbCode" readonly placeholder="Employee Code" [ngClass]="{ 'is-invalid': submitted && fv.empCode.errors }" />
+                    <div *ngIf="submitted && fv.empCode.errors" class="invalid-feedback">
+                        <div *ngIf="fv.empCode.errors.required">Employee code is required</div>
+                    </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="lbName">Employee Name<span class="star">*</span></label>
+                  <input type="text" formControlName="empName" class="form-control form-control form-control-lg"  id="lbName" readonly [ngClass]="{ 'is-invalid': submitted && fv.empName.errors }" />
+                    <div *ngIf="submitted && fv.empName.errors" class="invalid-feedback">
+                        <div *ngIf="fv.empName.errors.required">Employee name is required</div>
+                    </div>
+                </div>
+              </div>
+              <!-- [ngClass]="{'is-invalid': title.errors && (title.touched || title.dirty), 'is-valid':title.valid}" -->
+              <div class="col-md-4">
+                <div class="form-group">
+                    <label for="lbSwipe">Swipe<span class="star">*</span></label>
+                    <select type="text" class="form-select form-control form-control-lg" id="lbSwipe" formControlName="swipe"[ngClass]="{ 'is-invalid': submitted && fv.swipe.errors && (fv.swipe.touched || fv.swipe.dirty), 'is-valid':fv.swipe.valid}">
+                      <option>swipe1</option>
+                      <option>swipe2</option>
+                      <option>swipe3</option>
+                    </select>
+                    <div *ngIf="submitted && fv.swipe.errors" class="invalid-feedback">
+                      <div *ngIf="fv.swipe.errors.required">Swipe is required</div>
+                    </div>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="lbDate"> Date<span class="star">*</span></label>
+                    <angular2-date-picker type="text" id="lbDate" formControlName="date" id="lbTodate" [settings]="datePickersettings" ></angular2-date-picker>
+                      <!-- <div *ngIf="submitted && fv.date.errors" class="invalid-feedback">
+                          <div *ngIf="fv.date.errors.required">Date is required</div>
+                      </div> -->
+                      <!-- [ngClass]="{ 'is-invalid': submitted && fv.todate.errors }" -->
+                </div>
+              </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="lbSwift">Attended Shift<span class="star">*</span></label>
+                <select type="text" class="form-control form-control-lg" id="lbSwift" formControlName="attendedShift"[ngClass]="{ 'is-invalid': submitted && fv.attendedShift.errors }">
+                  <option *ngFor="let item of shifts" [value]="item.shiftcode">{{item.shiftname}}</option>
+                </select>
+                <div *ngIf="submitted && fv.attendedShift.errors" class="invalid-feedback">
+                  <div *ngIf="fv.attendedShift.errors.required">Attended swift is required</div>
+                </div>
+              </div>
+            </div>            
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="lbLate">Last HRS<span class="star">*</span></label>
+                <input type="text" formControlName="lateHrs" class="form-control form-control form-control-lg"  id="lbLate" placeholder="Late HRS" [ngClass]="{ 'is-invalid': submitted && fv.lateHrs.errors }" />
+                  <div *ngIf="submitted && fv.lateHrs.errors" class="invalid-feedback">
+                      <div *ngIf="fv.lateHrs.errors.required">Late hrs is required</div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="lbMmanager">Mmanager<span class="star">*</span></label>
+                <select class="form-control form-control-lg" id="lbMmanager" formControlName="manager"[ngClass]="{ 'is-invalid': submitted && fv.manager.errors }">
+                  <option *ngFor="let item of manager" [value]="item.empcode">{{item.emp_name}}</option>
+                </select>
+                <div *ngIf="submitted && fv.manager.errors" class="invalid-feedback">
+                  <div *ngIf="fv.manager.errors.required">Manager is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="lbOut">Remarks<span class="star">*</span></label>
+                <textarea type="text" formControlName="remarks" class="form-control form-control form-control-lg"  id="lbOut" placeholder="Remarks" [ngClass]="{ 'is-invalid': submitted && fv.remarks.errors }" rows="2"></textarea>
+                  <div *ngIf="submitted && fv.remarks.errors" class="invalid-feedback">
+                      <div *ngIf="fv.remarks.errors.required">Remarks is required</div>
+                  </div>
+              </div>
+            </div>
+          </div>       
+          <div class="row">
+            <div class="col-12">
+  
+              <button type="submit" class="btn btn-gradient-success float-right">Submit</button>
+              <button type="button" class="btn btn-light float-right" data-dismiss="modal" (click)="modal()">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </form>
+</div>

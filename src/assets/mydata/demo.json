@@ -1,0 +1,46 @@
+[
+    {
+    "LEAVECODE": "1",
+    "LeaveName": "Casual Leave"
+    },
+    {
+    "LEAVECODE": "2",
+    "LeaveName": "Earned Leave"
+    },
+    {
+    "LEAVECODE": "7",
+    "LeaveName": "Loss Of Pay"
+    },
+    {
+    "LEAVECODE": "4",
+    "LeaveName": "Maternity Leave"
+    },
+    {
+    "LEAVECODE": "3",
+    "LeaveName": "Sick Leave"
+    },
+    {
+    "LEAVECODE": "8",
+    "LeaveName": "Trainee leave"
+    },
+    {
+    "LEAVECODE": "14",
+    "LeaveName": "Work From Home"
+    },
+    {
+    "LEAVECODE": "10",
+    "LeaveName": "ESI"
+    },
+    {
+    "LEAVECODE": "11",
+    "LeaveName": "COFF "
+    },
+    {
+    "LEAVECODE": "13",
+    "LeaveName": "On Duty"
+    },
+    {
+    "LEAVECODE": "15",
+    "LeaveName": "Home Quaratain"
+    }
+    ]

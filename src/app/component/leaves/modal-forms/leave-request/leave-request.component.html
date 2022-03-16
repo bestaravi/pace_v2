@@ -1,0 +1,138 @@
+<div class="modal-content">
+  <div class="modal-header bg-gradient-dark-cus">
+    <h5 class="modal-title" id="exampleModalLabel">Add WH Change</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="col-12 grid-margin"> 
+    <form class="forms-sample" [formGroup]="leavesForm" (ngSubmit)="onSubmit()">
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="lbCode">Employee Code<span class="star">*</span></label>
+                <input type="text" formControlName="empCode" class="form-control form-control form-control-lg"  id="lbCode" placeholder="Employee Code" readonly [ngClass]="{ 'is-invalid': submitted && fv.empCode.errors }" />
+                  <div *ngIf="submitted && fv.empCode.errors" class="invalid-feedback">
+                      <div *ngIf="fv.empCode.errors.required">Employee code is required</div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="lbName">Employee Name<span class="star">*</span></label>
+                <input type="text" formControlName="empName" class="form-control form-control form-control-lg"  id="lbName" placeholder="Employee Name" readonly [ngClass]="{ 'is-invalid': submitted && fv.empName.errors }" />
+                  <div *ngIf="submitted && fv.empName.errors" class="invalid-feedback">
+                      <div *ngIf="fv.empName.errors.required">Employee name is required</div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                  <label for="lbType">Leave Types<span class="star">*</span></label>
+                  <select class="form-control form-control-lg" id="lbType" formControlName="leaveType"[ngClass]="{ 'is-invalid': submitted && fv.leaveType.errors }">
+                    <option *ngFor="let item of leaveTypes" [value]="item.leavecode">{{item.leavename}}</option>                    
+                  </select>
+                  <div *ngIf="submitted && fv.leaveType.errors" class="invalid-feedback">
+                    <div *ngIf="fv.leaveType.errors.required">Leave type is required</div>
+                  </div>
+                </div>
+              
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+                <label for="lbDate">Request Data<span class="star">*</span></label>                
+                <angular2-date-picker formControlName="date" [settings]="datePickersettings" [ngClass]="{ 'is-invalid': submitted && fv.date.errors }"></angular2-date-picker>
+                <div *ngIf="submitted && fv.date.errors" class="invalid-feedback">
+                  <div *ngIf="fv.date.errors.required">Date is required</div>
+                </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="lbSession1">From Session<span class="star">*</span></label>
+              <select class="form-control form-control-lg" id="lbSession1" formControlName="fsession"[ngClass]="{ 'is-invalid': submitted && fv.fsession.errors }">
+                <option *ngFor="let item of sessions" [value]="item.id">{{item.name}}</option>
+              </select>
+              <div *ngIf="submitted && fv.fsession.errors" class="invalid-feedback">
+                <div *ngIf="fv.fsession.errors.required">From session is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="lbSession2">To Session<span class="star">*</span></label>
+              <select class="form-control form-control-lg" id="lbSession2" formControlName="tsession"[ngClass]="{ 'is-invalid': submitted && fv.tsession.errors }">
+                <option *ngFor="let item of sessions" [value]="item.id">{{item.name}}</option>
+              </select>
+              <div *ngIf="submitted && fv.tsession.errors" class="invalid-feedback">
+                <div *ngIf="fv.tsession.errors.required">To session is required</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+                <label for="lbFromDate">From Data<span class="star">*</span></label>                
+                <angular2-date-picker formControlName="fromdate" id="lbFromDate" [settings]="fromDatePicker" [ngClass]="{ 'is-invalid': submitted && fv.fromdate.errors }"></angular2-date-picker>
+                <div *ngIf="submitted && fv.fromdate.errors" class="invalid-feedback">
+                  <div *ngIf="fv.fromdate.errors.required">From date is required</div>
+                </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="lbTodate">To Date<span class="star">*</span></label>
+              <angular2-date-picker formControlName="todate" id="lbTodate" [settings]="toDatePicker" [ngClass]="{ 'is-invalid': submitted && fv.todate.errors }"></angular2-date-picker>
+              <div *ngIf="submitted && fv.todate.errors" class="invalid-feedback">
+                <div *ngIf="fv.todate.errors.required">To date is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="lbSwift">No Of Days<span class="star">*</span></label>
+              <input type="text" formControlName="nod" class="form-control form-control form-control-lg"  id="lbName" placeholder="No of days" [ngClass]="{ 'is-invalid': submitted && fv.nooddays.errors }" />
+                  <div *ngIf="submitted && fv.nooddays.errors" class="invalid-feedback">
+                      <div *ngIf="fv.nooddays.errors.required">Employee name is required</div>
+                  </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="lbMmanager">Manager<span class="star">*</span></label>
+              <select class="form-control form-control-lg" id="lbMmanager" formControlName="manager"[ngClass]="{ 'is-invalid': submitted && fv.manager.errors }" disabled="true">
+                <option *ngFor="let item of manager" [value]="item.empcode">{{item.emp_name}}</option>
+              </select>
+              <div *ngIf="submitted && fv.manager.errors" class="invalid-feedback">
+                <div *ngIf="fv.manager.errors.required">Manager is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="lbOut">Remarks<span class="star">*</span></label>
+              <textarea type="text" formControlName="remarks" class="form-control form-control form-control-lg"  id="lbOut" placeholder="Remarks" [ngClass]="{ 'is-invalid': submitted && fv.remarks.errors }" rows="2"></textarea>
+                <div *ngIf="submitted && fv.remarks.errors" class="invalid-feedback">
+                    <div *ngIf="fv.remarks.errors.required">Remarks is required</div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <button type="submit" class="btn btn-gradient-info">Submit</button>
+              <button type="button" class="btn btn-light" data-dismiss="modal" (click)="modal()">Cancel</button>
+            </div>
+          </div>
+
+          </div>
+      </div>
+    </form>
+</div>

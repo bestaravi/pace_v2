@@ -1,0 +1,97 @@
+<div class="modal-content">
+    <div class="modal-header bg-gradient-info-cus">
+      <h5 class="modal-title" id="exampleModalLabel">Add Shift Change</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="col-12 grid-margin"> 
+      <form class="forms-sample" [formGroup]="shiftForm" (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+          <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="lbCode">Employee Code<span class="star">*</span></label>
+                  <input type="text" formControlName="empCode" class="form-control form-control form-control-lg"  id="lbCode" readonly [ngClass]="{ 'is-invalid': submitted && fv.empCode.errors }" />
+                    <div *ngIf="submitted && fv.empCode.errors" class="invalid-feedback">
+                        <div *ngIf="fv.empCode.errors.required">Employee code is required</div>
+                    </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="lbName">Employee Name<span class="star">*</span></label>
+                  <input type="text" formControlName="empName" class="form-control form-control form-control-lg"  id="lbName" readonly [ngClass]="{ 'is-invalid': submitted && fv.empName.errors }" />
+                    <div *ngIf="submitted && fv.empName.errors" class="invalid-feedback">
+                        <div *ngIf="fv.empName.errors.required">Employee name is required</div>
+                    </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="lbDate">Date<span class="star">*</span></label>
+                  <angular2-date-picker type="text" id="lbDate" formControlName="date" id="lbTodate" [settings]="datePickersettings" [ngClass]="{ 'is-invalid': submitted && fv.date.errors }"></angular2-date-picker>
+                    <div *ngIf="submitted && fv.date.errors" class="invalid-feedback">
+                        <div *ngIf="fv.date.errors.required">Date is required</div>
+                    </div>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="lbAttendedSwift">Attended Shift<span class="star">*</span></label>
+                    <select class="form-control form-control-lg" id="lbAttendedSwift" formControlName="attendedSwift"[ngClass]="{ 'is-invalid': submitted && fv.attendedSwift.errors }">
+                      <option *ngFor="let item of shifts" [value]="item.shiftcode">{{item.shiftname}}</option>
+                    </select>
+                    <div *ngIf="submitted && fv.attendedSwift.errors" class="invalid-feedback">
+                      <div *ngIf="fv.attendedSwift.errors.required">Attended swift is required</div>
+                    </div>
+                  </div>
+              </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="lbSwift">To Shift<span class="star">*</span></label>
+                <select class="form-control form-control-lg" id="lbSwift" formControlName="toShift"[ngClass]="{ 'is-invalid': submitted && fv.toSwift.errors }">
+                  <option>Shift1</option>
+                  <option>Shift2</option>
+                  <option>Shift3</option>
+                </select>
+                <div *ngIf="submitted && fv.toSwift.errors" class="invalid-feedback">
+                  <div *ngIf="fv.toSwift.errors.required">To swift is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                  <label for="lbMmanager">Mmanager<span class="star">*</span></label>
+                  <select class="form-control form-control form-control-lg" id="lbMmanager" formControlName="manager"[ngClass]="{ 'is-invalid': submitted && fv.manager.errors }">
+                    <option *ngFor="let item of manager" [value]="item.empcode">{{item.emp_name}}</option>
+                  </select>
+                  <div *ngIf="submitted && fv.manager.errors" class="invalid-feedback">
+                    <div *ngIf="fv.manager.errors.required">Manager is required</div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="row">            
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="lbOut">Remarks<span class="star">*</span></label>
+                <textarea type="text" formControlName="remarks" class="form-control form-control form-control-lg"  id="lbOut" placeholder="Remarks" [ngClass]="{ 'is-invalid': submitted && fv.remarks.errors }" rows="2"></textarea>
+                  <div *ngIf="submitted && fv.remarks.errors" class="invalid-feedback">
+                      <div *ngIf="fv.remarks.errors.required">Remarks is required</div>
+                  </div>
+              </div>
+            </div>
+          </div>       
+          <div class="row">
+            <div class="col-12">
+  
+              <button type="submit" class="btn btn-gradient-info float-right">Submit</button>
+              <button type="button" class="btn btn-light float-right" data-dismiss="modal" (click)="modal()">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </form>
+  </div>

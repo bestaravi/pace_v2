@@ -1,0 +1,106 @@
+<div class="modal-content">
+    <div class="modal-header bg-gradient-dark-cus">
+      <h5 class="modal-title" id="exampleModalLabel">Add Swipe Forgot</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="col-12 grid-margin"> 
+      <form class="forms-sample" [formGroup]="swipeForm" (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+          <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="lbCode">Employee Code<span class="star">*</span></label>
+                  <input type="text" formControlName="empCode" class="form-control form-control form-control-lg" readonly id="lbCode" [ngClass]="{ 'is-invalid': submitted && fv.empCode.errors }" />
+                    <div *ngIf="submitted && fv.empCode.errors" class="invalid-feedback">
+                        <div *ngIf="fv.empCode.errors.required">Employee code is required</div>
+                    </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="lbName">Employee Name<span class="star">*</span></label>
+                  <input type="text" formControlName="empName" class="form-control form-control form-control-lg"  id="lbName" readonly [ngClass]="{ 'is-invalid': submitted && fv.empName.errors }" />
+                    <div *ngIf="submitted && fv.empName.errors" class="invalid-feedback">
+                        <div *ngIf="fv.empName.errors.required">Employee name is required</div>
+                    </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="lbDate">Swipe Forgot Date<span class="star">*</span></label>
+                  <angular2-date-picker type="text" id="lbDate" formControlName="sfDate" [settings]="datePickersettings" [ngClass]="{ 'is-invalid': submitted && fv.sfDate.errors }"></angular2-date-picker>
+                    <div *ngIf="submitted && fv.sfDate.errors" class="invalid-feedback">
+                        <div *ngIf="fv.sfDate.errors.required">Swipe forgot date is required</div>
+                    </div>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="lbSwipe">Swipe<span class="star">*</span></label>
+                    <select class="form-control form-control-lg" id="lbSwipe" formControlName="swipe"[ngClass]="{ 'is-invalid': submitted && fv.swipe.errors }">
+                      <option>swipe</option>
+                      <option>swipe</option>
+                      <option>swipe</option>
+                    </select>
+                    <div *ngIf="submitted && fv.swipe.errors" class="invalid-feedback">
+                      <div *ngIf="fv.swipe.errors.required">Swipe is required</div>
+                    </div>
+                </div>
+              </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="lbShift">Shift<span class="star">*</span></label>
+                <select class="form-control form-control-lg" id="lbShift" formControlName="shift"[ngClass]="{ 'is-invalid': submitted && fv.shift.errors }">
+                  <option *ngFor="let item of shifts" [value]="item.shiftcode">{{item.shiftname}}</option>
+                </select>
+                <div *ngIf="submitted && fv.shift.errors" class="invalid-feedback">
+                  <div *ngIf="fv.shift.errors.required">Shift is required</div>
+                </div>
+              </div>
+            </div>            
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="lbOut">Out Time<span class="star">*</span></label>
+                <input type="text" formControlName="outTime" class="form-control form-control form-control-lg"  id="lbOut" placeholder="Out Time" [ngClass]="{ 'is-invalid': submitted && fv.outTime.errors }" />
+                  <div *ngIf="submitted && fv.outTime.errors" class="invalid-feedback">
+                      <div *ngIf="fv.outTime.errors.required">Out time is required</div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="lbMmanager">Mmanager<span class="star">*</span></label>
+                <select class="form-control form-control-lg" id="lbMmanager" formControlName="manager"[ngClass]="{ 'is-invalid': submitted && fv.manager.errors }">
+                  <option *ngFor="let item of manager" [value]="item.empcode">{{item.emp_name}}</option>
+                </select>
+                <div *ngIf="submitted && fv.manager.errors" class="invalid-feedback">
+                  <div *ngIf="fv.manager.errors.required">Manager is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="lbOut">Remarks<span class="star">*</span></label>
+                <textarea type="text" formControlName="remarks" class="form-control form-control form-control-lg"  id="lbOut" placeholder="Remarks" [ngClass]="{ 'is-invalid': submitted && fv.remarks.errors }" rows="2"></textarea>
+                  <div *ngIf="submitted && fv.remarks.errors" class="invalid-feedback">
+                      <div *ngIf="fv.remarks.errors.required">Remarks is required</div>
+                  </div>
+              </div>
+            </div>
+          </div>       
+          <div class="row">
+            <div class="col-12">
+  
+              <button type="submit" class="btn btn-gradient-dark float-right">Submit</button>
+              <button type="button" class="btn btn-light float-right" data-dismiss="modal" (click)="modal()">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </form>
+  </div>

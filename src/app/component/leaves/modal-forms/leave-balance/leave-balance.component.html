@@ -1,0 +1,47 @@
+<div class="modal-content">
+    <div class="modal-header bg-gradient-dark">
+      <h5 class="modal-title" >Leave Balance Info</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+     <div class="modal-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Emp Code</th>
+                  <th>YEAR</th>
+                  
+                  <th>CLOPBAL</th>
+                  <th>CLAVAIL</th>
+                  <th>ELOPBAL</th>
+                  <th>ELAVAIL</th>
+                  <th>SLOPBAL</th>
+                  <th>SLAVAIL</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of leaveBalenceData; let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{item.empcode}}</td>
+                  <td>{{item.year}}</td>
+                  <td class="pr-0 "><div class="badge badge-pill badge-primary">{{item.clavail}}</div></td>
+                  <td class="pr-0 "><div class="badge badge-pill badge-dark">{{item.clopbal}}</div></td>
+                  <td class="pr-0 "><div class="badge badge-pill badge-info">{{item.elavail}}</div></td>
+                  <td class="pr-0 "><div class="badge badge-pill badge-success">{{item.elopbal}}</div></td>
+                  <td class="pr-0 "><div class="badge badge-pill badge-danger">{{item.slavail}}</div></td>
+                  <td class="pr-0 "><div class="badge badge-pill badge-warning">{{item.slopbal}}</div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    </div>
+    <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-success">Submit</button> -->
+        <button type="button" class="btn btn-light" (click)="modal()">close</button>
+    </div>
+      
+</div>
+
