@@ -28,11 +28,12 @@ export class DataService implements OnInit {
   }
   login(data): Observable<Login> {
     let url = baseURL+'/Employee/Login';
+    console.log(url)
     return this._http.post<Login>(url, data,httpOptions);
   }
   leaveTypes(): Observable<any> {
     // data = {"Empcode":"10225","year":2022 }
-    let url = APIURL+'/employee/GetLeaveTypes';
+    let url = baseURL+'/employee/GetLeaveTypes';
     // let url = './assets/mydata.json';
     
     console.log(APIURL,url)
