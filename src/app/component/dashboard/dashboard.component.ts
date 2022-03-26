@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { DatePipe, formatDate } from '@angular/common';
+import { Component, OnInit,Inject,
+  LOCALE_ID  } from '@angular/core';
+import { UserInfo } from 'src/app/core/model';
+import { DataService } from 'src/app/service/data.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -7,10 +12,105 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  person: UserInfo;
+  birthDayList =[];
+  holidayList =[];
+  absentList =[];
+  today = new Date().getHours();
+  greeting;
+  currentDate = new Date();
+  toDate;
+  fromDate;
+  attendanceList = [];
+  isAttendanceLoading:boolean = false;
+  presentDaysCount = 0;
+  absentDaysCount = 0;
+  constructor(
+    private _dataService: DataService,
+    @Inject(LOCALE_ID) public locale: string
+  ) { }
 
   ngOnInit() {
+
+    if((localStorage.getItem('user'))){
+      if (this.today < 12) {
+        this.greeting = "Good Morning"
+      } else if (this.today < 18) {
+        this.greeting = "Good Afternoon"
+      } else {
+        this.greeting = "Good Evening"
+      }
+      
+      this.person = JSON.parse(localStorage.getItem('user'))
+      this._dataService.fetchBirthDayList(this.person.compcode).subscribe(res =>{
+        if(res[0].status == 'success'){
+          this.birthDayList = res[0].data
+        }
+        console.log('Response',res)
+      })
+      this.getHolidayList();
+      this.getTeamAbsent();
+      this.getPresentAbsentDays();
+    }
   }
+
+  getHolidayList =()=>{
+    this._dataService.fetchHolidayList(this.person.compcode).subscribe(res =>{
+      if(res[0].status == 'success'){
+        this.holidayList = res[0].data
+      }
+      console.log(44,this.holidayList)
+    })
+  }
+
+  getTeamAbsent =()=>{
+    this._dataService.fetchTeamAbsentList(this.person.compcode).subscribe(res =>{
+      if(res[0].status == 'success'){
+        this.absentList = res[0].data
+      }
+      console.log('Response',res)
+    })
+  }
+
+  getPresentAbsentDays = ()=>{
+    this.currentDate.setDate(this.currentDate.getDate() - 45);
+      var dateString = this.currentDate.toISOString().split('T')[0];
+      this.toDate = formatDate(new Date(), 'dd-MMM-yyyy' ,this.locale);
+      this.fromDate = formatDate(new Date(dateString), 'dd-MMM-yyyy' ,this.locale);
+      console.log(75,this.toDate, this.fromDate)
+
+      let data = {
+        "Empcode":this.person.empcode,
+        "From_Date":this.fromDate,
+        "To_Date":this.toDate
+      }
+      this._dataService.getAttendance(data).subscribe(res =>{
+        this.isAttendanceLoading = true;
+        // res[0].data = null;
+        if(res[0].status == 'success')
+          if(res[0].data == null || res[0].message == "No Records Found"){
+            this.isAttendanceLoading = false;
+            this.attendanceList = []
+          }else{
+            this.isAttendanceLoading = false;
+            this.attendanceList = res[0].data
+            if(this.attendanceList.length >0){
+              for(const x in this.attendanceList){
+                if(this.attendanceList[x].status == 'XX' || this.attendanceList[x].status == 'VV'|| this.attendanceList[x].status == 'RR'|| this.attendanceList[x].status == 'FF'|| this.attendanceList[x].status == 'DD'|| this.attendanceList[x].status == 'BB'|| this.attendanceList[x].status == 'MM'|| this.attendanceList[x].status == 'CC'|| this.attendanceList[x].status == 'SS'|| this.attendanceList[x].status == 'EE' || this.attendanceList[x].status == 'LL'|| this.attendanceList[x].status == 'ZZ'|| this.attendanceList[x].status == 'PP'|| this.attendanceList[x].status == 'WH' || this.attendanceList[x].status == 'PH'
+
+                ){
+                    this.presentDaysCount++
+                }else{
+                  this.absentDaysCount++;
+                }
+              }
+            }
+          }
+        console.log(108,this.presentDaysCount,this.absentDaysCount,res)
+      })
+  }
+
+
   public iproBannerToggled = false;
   toggleProBanner() {
     this.iproBannerToggled = !this.iproBannerToggled;

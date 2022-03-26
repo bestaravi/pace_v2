@@ -16,6 +16,7 @@ export class LeavesComponent implements OnInit {
 
   pendingList = [];
   approvalList = [];
+  isLoading:boolean = false;
 
   constructor(
     private _modalService: NgbModal,
@@ -45,10 +46,15 @@ export class LeavesComponent implements OnInit {
   }
 
   pendingLeaves = ()=>{
+    this.isLoading = true;
     this._dataService.getPendingLeaves().subscribe(res =>{
       console.log(res[0])
-      if(res[0].status == 'success'){
+      if(res[0].status == 'success' && res[0].data.length >0){
+        this.isLoading = false;
         this.pendingList = res[0].data
+      }else{
+        this.isLoading = false;
+        this.pendingList = [];
       }
     })
   }

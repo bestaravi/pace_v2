@@ -50,7 +50,61 @@ select.form-control {
 .bg-gradient-success-cus {
     background: linear-gradient(to left, #84d9d2, #07cdae);
 }
+.bg-gradient-lorus-dark-hash {
+    background: linear-gradient(to right, #ca74ef, #421E51 99%);
+}
+.bg-gradient-lorus-success {
+    background: linear-gradient(to left, #95db74, #2c7908);
+}
+
 
 .close{
     color:#ffffff;
+}
+option {
+    font-size: .8525rem;
+    background-color: #ffffff;
+  }
+  select.form-control, .swal2-modal .swal2-content select.swal2-input, .dataTables_wrapper select, .select2-example .select2-container select.select2-selection--multiple, .select2-example .select2-container select.select2-selection--single {
+    
+    color: #2c2828 !important;
+}
+.btn-lorus-dark-hash{
+    background-color: #421E51;
+    border-color: #421E51;
+    color: #fff;
+}
+.btn-lorus-success{
+    background-color: #6BBE45;
+    border-color: #6BBE45;
+    color: #fff;
+}
+.btn-lorus-green{
+    background-color: #02B2A8;
+    border-color: #02B2A8;
+    color: #fff !important;
+}
+.col-xl, .col-xl-auto, .col-xl-12, .col-xl-11, .col-xl-10, .col-xl-9, .col-xl-8, .col-xl-7, .col-xl-6, .col-xl-5, .col-xl-4, .col-xl-3, .col-xl-2, .col-xl-1, .col-lg, .col-lg-auto, .col-lg-12, .col-lg-11, .col-lg-10, .col-lg-9, .col-lg-8, .col-lg-7, .col-lg-6, .col-lg-5, .col-lg-4, .col-lg-3, .col-lg-2, .col-lg-1, .col-md, .col-md-auto, .col-md-12, .col-md-11, .col-md-10, .col-md-9, .col-md-8, .col-md-7, .col-md-6, .col-md-5, .col-md-4, .col-md-3, .col-md-2, .col-md-1, .col-sm, .col-sm-auto, .col-sm-12, .col-sm-11, .col-sm-10, .col-sm-9, .col-sm-8, .col-sm-7, .col-sm-6, .col-sm-5, .col-sm-4, .col-sm-3, .col-sm-2, .col-sm-1, .col, .col-auto, .col-12, .col-11, .col-10, .col-9, .tab-vertical-custom.tab-content, .col-8, .tab-vertical .tab-content, .tab-vertical-custom .tab-content, .pills-vertical .tab-content, .col-7, .col-6, .col-5, .col-4, .tab-vertical .nav-tabs, .tab-vertical-custom .nav-tabs, .pills-vertical .nav-pills, .col-3, .col-2, .col-1 {
+    position: relative;
+    width: 100%;
+    padding-right: 25px !important;
+    padding-left: 30px !important;
+}
+.horizontal-menu .bottom-navbar {
+    background: #421E51 !important;
+}
+.horizontal-menu .bottom-navbar .page-navigation > .nav-item.active > .nav-link .menu-title, .horizontal-menu .bottom-navbar .page-navigation > .nav-item.active > .nav-link i, .horizontal-menu .bottom-navbar .page-navigation > .nav-item.active > .nav-link .menu-arrow {
+    color: #a78db3 !important;
+}
+
+.accordion.accordion-solid-header .card .card-header button {
+    background: #02B2A8;
+    color: #ffffff;
+}
+.accordion.accordion-solid-header .card .card-header button[aria-expanded=true] {
+    background: #02B2A8;
+    color: #ffffff;
+}
+.accordion.accordion-solid-header .card .card-header button {
+    padding: 1.275rem;
 }

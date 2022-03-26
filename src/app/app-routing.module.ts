@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AttendanceComponent } from './component/attendance/attendance.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { LeavesComponent } from './component/leaves/leaves.component';
 import { LoginComponent } from './component/login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+// import { DashboardComponent } from './dashboard/dashboard.component';
 import { RtlComponent } from './rtl/rtl.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 

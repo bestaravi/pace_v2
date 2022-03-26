@@ -17,8 +17,9 @@ export class NavbarComponent implements OnInit {
   }
 
   person: UserInfo = JSON.parse(localStorage.getItem('user'))
-
+  imgagePath: any;
   ngOnInit() {
+    // this.imgagePath = this.person.i
     // Horizontal menu fixed when scrolling
     window.addEventListener('scroll', function() { 
       let navbar = document.querySelector('.horizontal-menu');

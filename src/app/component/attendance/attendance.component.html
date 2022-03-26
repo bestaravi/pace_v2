@@ -1,6 +1,6 @@
 <div class="page-header">
   <h3 class="page-title">
-    <span class="page-title-icon bg-gradient-info text-white mr-2">
+    <span class="page-title-icon bg-gradient-lorus-dark-hash text-white mr-2">
       <i class="mdi mdi-view-week"></i>                 
     </span>
     Attendance
@@ -146,8 +146,8 @@
               </button>
             </div> -->
           </div>
-          <div class="table-responsive">
-            <table class="table table-hover">
+          <div class="table-responsive" *ngIf="attendanceList.length>0">
+            <table datatable class="table table-hover">
               <thead>
                 <tr>
                   <th>No.</th>

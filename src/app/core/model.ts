@@ -14,6 +14,10 @@ export interface UserInfo{
     groupcode?: string;
     pwd?: string;
     sectcode?: string;
+    compdesc?:string;
+    deptdesc?:string;
+    imagename?:string;
+    
 }
 
 export interface LeaveType {

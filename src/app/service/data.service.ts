@@ -21,15 +21,32 @@ const APIURL: string = environment.apiUrl;
 })
 export class DataService implements OnInit {
 
-  constructor( private _http: HttpClient) { }
+  constructor( private _http: HttpClient) {
+    console.log(baseURL)
+  }
 
   ngOnInit(): void {
-    
   }
   login(data): Observable<Login> {
     let url = baseURL+'/Employee/Login';
     console.log(url)
     return this._http.post<Login>(url, data,httpOptions);
+  }
+  // Dashboard Page
+  fetchBirthDayList=(compcode)=>{
+    let url = baseURL+'/Employee/GetBirthdaylist/'+compcode;
+    return this._http.get<LeaveType>(url,httpOptions);
+
+  }
+  fetchHolidayList=(compcode)=>{
+    let url = baseURL+'/Employee/GetHolidaylist/'+compcode;
+    return this._http.get<LeaveType>(url,httpOptions);
+
+  }
+  fetchTeamAbsentList=(compcode)=>{
+    let url = baseURL+'/employee/GetTeamAbsentlist/'+compcode;
+    return this._http.get<LeaveType>(url,httpOptions);
+
   }
   leaveTypes(): Observable<any> {
     // data = {"Empcode":"10225","year":2022 }
@@ -51,15 +68,12 @@ export class DataService implements OnInit {
     return this._http.get<any>(url, httpOptions);
   }
   //Attendance Request
-  getAttendance(data){
-    data = {"Empcode":"10225",
-    "From_Date":"01-Jan-2022",
-    "To_Date":"31-Jan-2022"
-    }
+  getAttendance(data): Observable<any>{
+    
     let url = baseURL+'/Attendance/GetAttendance';
     return this._http.post<any>(url, data, httpOptions);
   }
-  getLeaveBalance(data){
+  getLeaveBalance(data): Observable<any>{
     data = {"Empcode":"10225",
     "year":"2022"
     }
