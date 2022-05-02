@@ -48,6 +48,13 @@ export class DataService implements OnInit {
     return this._http.get<LeaveType>(url,httpOptions);
 
   }
+
+  fetchCYAttendance=(compcode)=>{
+    let url = baseURL+'/Employee/Currentyearattencelist/'+compcode;
+    return this._http.get<LeaveType>(url,httpOptions);
+
+  }
+
   leaveTypes(): Observable<any> {
     // data = {"Empcode":"10225","year":2022 }
     let url = baseURL+'/employee/GetLeaveTypes';

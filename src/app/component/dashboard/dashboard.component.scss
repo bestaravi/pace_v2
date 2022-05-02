@@ -89,9 +89,17 @@
     }
   }
 }
+#visit-sale-chart-legend ul li:nth-child(1) .legend-dots {
+  background: linear-gradient(to right, #8cffae, #03c023) !important;
+}
+.grid-margin-mf{
+  margin-bottom: 1.5rem;
+}
+
 .card-ht{
   min-height: 250px;
 }
+
 .cus-scroll-bar{
   height: 300px;
   overflow: auto;

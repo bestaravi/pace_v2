@@ -37,7 +37,7 @@
     <div class="card bg-gradient-danger card-img-holder text-white">
       <div class="card-body">
         <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>
-        <h4 class="font-weight-normal mb-3">Hello
+        <h4 class="font-weight-normal mb-3">Hi..!
           <i class="mdi mdi-clock mdi-24px float-right"></i>
         </h4>
         <h2 class="mb-5">{{greeting}}</h2>
@@ -63,7 +63,7 @@
         </span>
         <h2 class="mb-5" *ngIf="(attendanceList.length === 0 && isAttendanceLoading)">No Records Found</h2>
         <h2 class="mb-5" *ngIf="attendanceList.length > 0">{{presentDaysCount}}</h2>
-        <h6 class="card-text">This Month</h6>
+        <h6 class="card-text">Current Month Attendance</h6>
       </div>
     </div>
   </div>
@@ -75,60 +75,165 @@
           <i class="mdi mdi-diamond mdi-24px float-right"></i>
         </h4>
         <h2 class="mb-5">{{absentDaysCount}}</h2>
-        <h6 class="card-text">This Month</h6>
+        <h6 class="card-text">Current Month Attendance</h6>
       </div>
     </div>
   </div>
 </div>
-<!-- <div class="row">
-  <div class="col-lg-7 grid-margin stretch-card">
+<div class="row">
+  <div class="col-md-4 h-100">
+    <div class="bg-light p-0">
+      <div class="container-fluid bg-gradient-primary-cus py-2">
+        <h4 class="mb-0 text-white">Todays Birthdays</h4>
+      </div>
+      <div class="card-ht">
+        <div class="py-2 cus-scroll-bar">
+          <div class="card rounded mb-2" *ngFor="let item of birthDayList">
+            <div class="card-body p-3">
+              <div class="media" >
+                <img [src]="'data:image/jpg;base64,'+item.imagename" alt="image" class="img-sm mr-3 rounded-circle">
+                <div class="media-body">
+                  <h6 class="mb-1">{{item.emp_name}}</h6>
+                  <p class="mb-0 text-muted">
+                    {{item.desigdesc}}                              
+                  </p>
+                </div>                              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 h-100 grid-margin">
+    <div class="bg-light-md p-0">
+      <div class="container-fluid bg-gradient-dark-cus py-2">
+        <h4 class="mb-0 text-white">Leave Balance</h4>
+      </div>
+      <div class="card-ht">
+        <div class="py-2 cus-scroll-bar">
+          <div class="table-responsive">
+            <table class="table table-hover" *ngIf="isLeaveBalence">
+              <thead>
+                <tr>
+
+                  <th>Leave Type</th>
+                  <th>Opening</th>
+                  <th>Availed</th>
+                  <th>Closing</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Casual Leave</td>
+                  <td>{{leaveBalenceData.clopbal}}</td>
+                  <td>{{leaveBalenceData.clavail}}</td>
+                  <td><label class="badge badge-dark">{{leaveBalenceData.clopbal-leaveBalenceData.clavail}}</label></td>
+                  
+                </tr>
+                <tr>
+                  <td>Earned Leave</td>
+                  <td>{{leaveBalenceData.elopbal}}</td>
+                  <td>{{leaveBalenceData.elavail}}</td>                
+                  <td><label class="badge badge-dark">{{leaveBalenceData.elopbal - leaveBalenceData.elavail}}</label></td>
+                  
+
+                </tr>
+                <tr>
+                  <td>Sick Leave</td>
+                  <td>{{leaveBalenceData.slopbal}}</td>
+                  <td>{{leaveBalenceData.slavail}}</td>
+                  <td> <label class="badge badge-dark">{{leaveBalenceData.slopbal - leaveBalenceData.slavail}}</label></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 h-100">
+    <div class="bg-light-md p-0">
+      <div class="container-fluid bg-gradient-warning-cus py-2">
+        <h4 class="mb-0 text-white">Last 45 days attendance</h4>
+      </div>
+      <div class="card-ht">
+        <div class="py-2 cus-scroll-bar">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Shift</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of attendanceList">
+                  <td>{{item.pdate}}</td>
+                  <td>{{item.shiftcode}}</td>
+                  <td><label class="badge badge-warning">{{item.status}}</label></td>                  
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-8 grid-margin stretch-card">
     <div class="card">
-      <div class="card-body">
+      <div class="card-body" *ngIf="cyAttendance.length> 0">
         <div class="d-flex flex-wrap justify-content-between">
-          <h4 class="card-title">Visit And Sales Statistics</h4>
+          <h4 class="card-title">Previous Year Attendance</h4>
           <div id="visit-sale-chart-legend" class="rounded-legend legend-horizontal">
             <ul>
-              <li>
-                <span class="legend-dots"></span>CHN
-              </li>
-              <li>
-                <span class="legend-dots"></span>USA
-              </li>
               <li class="mr-0">
-                <span class="legend-dots"></span>UK
+                <span class="legend-dots"></span>Presentdays
+              </li>
+              <li>
+                <span class="legend-dots"></span>Absent
+              </li>
+              <li>
+                <span class="legend-dots"></span>Leaves
               </li>
             </ul>
           </div>
         </div>
-        <canvas baseChart #visitSaleChart [chartType]="'bar'" [datasets]="visitSaleChartData" [labels]="visitSaleChartLabels" [options]="visitSaleChartOptions" [colors]="visitSaleChartColors"></canvas>
+        <!-- <span > -->
+          <canvas baseChart #visitSaleChart [chartType]="'bar'" [datasets]="visitSaleChartData" [labels]="visitSaleChartLabels" [options]="visitSaleChartOptions" [colors]="visitSaleChartColors"></canvas>
+        <!-- </span> -->
       </div>
     </div>
   </div>
-  <div class="col-lg-5 grid-margin stretch-card">
+  <div class="col-lg-4 grid-margin stretch-card">
     <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Traffic Sources</h4>
+      <div class="card-body" *ngIf="cyAttendance.length > 0">
+        <h4 class="card-title mb-5">Current Month Attendance</h4>
         <canvas baseChart [chartType]="'doughnut'" [datasets]="trafficChartData" [labels]="trafficChartLabels" [options]="trafficChartOptions" [colors]="trafficChartColors"></canvas>
         <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4">
           <ul>
             <li>
-              <span class="legend-dots"></span>Search Engines
-              <span class="float-right">30%</span>
+              <span class="legend-dots"></span>Leaves
+              <span class="float-right">{{currentMonthData.leaves}}</span>
             </li>
             <li>
-              <span class="legend-dots"></span>Direct Click
-              <span class="float-right">30%</span>
+              <span class="legend-dots"></span>Presentdays
+              <span class="float-right">{{currentMonthData.presentdays}}</span>
             </li>
+            
             <li>
-              <span class="legend-dots"></span>Bookmarks Click
-              <span class="float-right">40%</span>
+              <span class="legend-dots"></span>Absent
+              <span class="float-right">{{currentMonthData.absent}}</span>
             </li>
           </ul>
         </div>
       </div>
     </div>
   </div>  
-</div> -->
+</div>
 
 <div class="row">
   
@@ -154,31 +259,40 @@
       </div>
     </div>
   </div> -->
-  <div class="col-md-5 h-100">
-    <div class="bg-light p-4">
-      <h6 class="card-title">Birth Days</h6>
+  <div class="col-md-4 h-100">
+    <div class="bg-light p-0">
+      <div class="container-fluid bg-gradient-danger-cus py-2">
+        <h4 class="mb-0 text-white">Attendence to be regularize</h4>
+      </div>
       <div class="card-ht">
         <div class="py-2 cus-scroll-bar">
-          <div class="card rounded mb-2" *ngFor="let item of birthDayList">
-            <div class="card-body p-3">
-              <div class="media" >
-                <img [src]="'data:image/jpg;base64,'+item.imagename" alt="image" class="img-sm mr-3 rounded-circle">
-                <div class="media-body">
-                  <h6 class="mb-1">{{item.emp_name}}</h6>
-                  <p class="mb-0 text-muted">
-                    {{item.desigdesc}}                              
-                  </p>
-                </div>                              
-              </div>
-            </div>
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Shift</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of attendanceToBeRegularze">
+                  <td>{{item.pdate}}</td>
+                  <td>{{item.shiftcode}}</td>
+                  <td><label class="badge badge-danger">{{item.status}}</label></td>                  
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-md-7 h-100">
-    <div class="bg-light p-4">
-      <h6 class="card-title">Holidays</h6>
+  <div class="col-md-8 h-100">
+    <div class="bg-light p-0">
+      <div class="container-fluid bg-gradient-lorus-dark-hash-lf py-2">
+        <h4 class="mb-0 text-white">H o l i d a y s</h4>
+      </div>
       <div class="card-ht">
         <div class="py-2 cus-scroll-bar">
           <div class="timeline" *ngIf="holidayList.length > 0">
@@ -314,6 +428,7 @@
     </div>
   </div>
 </div>
+
 
 <!-- <div class="row">
   <div class="col-12 grid-margin">

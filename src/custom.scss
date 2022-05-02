@@ -37,7 +37,9 @@ select.form-control {
 .bg-gradient-dark-cus {
     background: linear-gradient(206deg, #5e7188, #3e4b5b);
 }
-
+.bg-gradient-warning-cus {
+    background: linear-gradient(273deg,#f6e384,#ffd500);
+}
 .bg-gradient-primary-cus {
     background: linear-gradient(to left, #da8cff, #9a55ff);
 }
@@ -53,10 +55,15 @@ select.form-control {
 .bg-gradient-lorus-dark-hash {
     background: linear-gradient(to right, #ca74ef, #421E51 99%);
 }
+.bg-gradient-lorus-dark-hash-lf {
+    background: linear-gradient(to left, #ca74ef, #421E51 99%);
+}
 .bg-gradient-lorus-success {
     background: linear-gradient(to left, #95db74, #2c7908);
 }
-
+.bg-light-md {
+    background-color: #fff !important;
+}
 
 .close{
     color:#ffffff;
@@ -107,4 +114,7 @@ option {
 }
 .accordion.accordion-solid-header .card .card-header button {
     padding: 1.275rem;
+}
+.media-body{
+    background-image: url('./assets/birthday/hbd1.jpg') !important;
 }

@@ -26,12 +26,13 @@ export interface LeaveType {
 }
 
 export interface LeaveBalence {
-    EmpCode?: string;
-    YEAR?: number;
-    SLOPBAL?:number;
-    SLAVAIL?:number;
-    CLAVAIL?: number;
-    CLOPBAL?: number;
-    ELOPBAL?: number;
-    ELAVAIL?: number;
+    clavail?: number;
+    clopbal?: number;
+    elavail?: number;
+    elopbal?: number;
+    empcode?: string;
+    slavail?: number;
+    slopbal?: number;
+    closingbal?: number;
+    year?: number;
 }

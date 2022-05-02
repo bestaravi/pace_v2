@@ -6,3 +6,7 @@
 .btn:hover, .fc button:hover, .swal2-modal .swal2-actions .swal2-styled:hover, .swal2-modal .swal2-buttonswrapper .swal2-styled:hover {
     color: #ccc;
 }
+.btn.btn-icon, .fc button.btn-icon, .swal2-modal .swal2-actions .btn-icon.swal2-styled, .swal2-modal .swal2-buttonswrapper .btn-icon.swal2-styled {
+    width: 30px !important;
+    height: 30px !important;
+}
