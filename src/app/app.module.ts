@@ -12,7 +12,7 @@ import { ChartsModule } from 'ng2-charts';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { TodoComponent } from './apps/todo-list/todo/todo.component';
@@ -33,9 +33,7 @@ import { SwipeForgotComponent } from './component/attendance/modal-forms/swipe-f
 import { ShiftChangeComponent } from './component/attendance/modal-forms/shift-change/shift-change.component';
 import { WhChangeComponent } from './component/attendance/modal-forms/wh-change/wh-change.component';
 import { PermissionComponent } from './component/attendance/modal-forms/permission/permission.component';
-// import { LeaveBalanceComponent } from './leaves/modal-forms/leave-balance/leave-balance.component';
-// import { LeaveRequestComponent } from './leaves/modal-forms/leave-request/leave-request.component';
-// import { LeavesComponent } from './leaves/leaves.component';
+import { DataTablesModule } from 'angular-datatables';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -86,7 +84,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     }
     }),
     AngularDateTimePickerModule,
-    AmazingTimePickerModule
+    AmazingTimePickerModule,
+    DataTablesModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents: [

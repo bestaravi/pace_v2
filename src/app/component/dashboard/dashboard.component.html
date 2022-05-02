@@ -1,6 +1,6 @@
 <div class="page-header">
   <h3 class="page-title">
-    <span class="page-title-icon bg-gradient-primary text-white mr-2">
+    <span class="page-title-icon bg-gradient-lorus-dark-hash text-white mr-2">
       <i class="mdi mdi-home"></i>                 
     </span>
     Dashboard
@@ -37,11 +37,11 @@
     <div class="card bg-gradient-danger card-img-holder text-white">
       <div class="card-body">
         <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>
-        <h4 class="font-weight-normal mb-3">Weekly Sales
-          <i class="mdi mdi-chart-line mdi-24px float-right"></i>
+        <h4 class="font-weight-normal mb-3">Hi..!
+          <i class="mdi mdi-clock mdi-24px float-right"></i>
         </h4>
-        <h2 class="mb-5">$ 15,0000</h2>
-        <h6 class="card-text">Increased by 60%</h6>
+        <h2 class="mb-5">{{greeting}}</h2>
+        <!-- <h6 class="card-text">Increased by 60%</h6> -->
       </div>
     </div>
   </div>
@@ -49,11 +49,21 @@
     <div class="card bg-gradient-info card-img-holder text-white">
       <div class="card-body">
         <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>                  
-        <h4 class="font-weight-normal mb-3">Weekly Orders
+        <h4 class="font-weight-normal mb-3">Present Days
           <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
         </h4>
-        <h2 class="mb-5">45,6334</h2>
-        <h6 class="card-text">Decreased by 10%</h6>
+        <span *ngIf="isAttendanceLoading">
+          <span class="float-center">
+            <div class="dot-opacity-loader" >
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </span>
+        </span>
+        <h2 class="mb-5" *ngIf="(attendanceList.length === 0 && isAttendanceLoading)">No Records Found</h2>
+        <h2 class="mb-5" *ngIf="attendanceList.length > 0">{{presentDaysCount}}</h2>
+        <h6 class="card-text">Current Month Attendance</h6>
       </div>
     </div>
   </div>
@@ -61,57 +71,162 @@
     <div class="card bg-gradient-success card-img-holder text-white">
       <div class="card-body">
         <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"/>                                    
-        <h4 class="font-weight-normal mb-3">Visitors Online
+        <h4 class="font-weight-normal mb-3">Absent Days
           <i class="mdi mdi-diamond mdi-24px float-right"></i>
         </h4>
-        <h2 class="mb-5">95,5741</h2>
-        <h6 class="card-text">Increased by 5%</h6>
+        <h2 class="mb-5">{{absentDaysCount}}</h2>
+        <h6 class="card-text">Current Month Attendance</h6>
       </div>
     </div>
   </div>
 </div>
 <div class="row">
-  <div class="col-lg-7 grid-margin stretch-card">
+  <div class="col-md-4 h-100">
+    <div class="bg-light p-0">
+      <div class="container-fluid bg-gradient-primary-cus py-2">
+        <h4 class="mb-0 text-white">Todays Birthdays</h4>
+      </div>
+      <div class="card-ht">
+        <div class="py-2 cus-scroll-bar">
+          <div class="card rounded mb-2" *ngFor="let item of birthDayList">
+            <div class="card-body p-3">
+              <div class="media" >
+                <img [src]="'data:image/jpg;base64,'+item.imagename" alt="image" class="img-sm mr-3 rounded-circle">
+                <div class="media-body">
+                  <h6 class="mb-1">{{item.emp_name}}</h6>
+                  <p class="mb-0 text-muted">
+                    {{item.desigdesc}}                              
+                  </p>
+                </div>                              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 h-100 grid-margin">
+    <div class="bg-light-md p-0">
+      <div class="container-fluid bg-gradient-dark-cus py-2">
+        <h4 class="mb-0 text-white">Leave Balance</h4>
+      </div>
+      <div class="card-ht">
+        <div class="py-2 cus-scroll-bar">
+          <div class="table-responsive">
+            <table class="table table-hover" *ngIf="isLeaveBalence">
+              <thead>
+                <tr>
+
+                  <th>Leave Type</th>
+                  <th>Opening</th>
+                  <th>Availed</th>
+                  <th>Closing</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Casual Leave</td>
+                  <td>{{leaveBalenceData.clopbal}}</td>
+                  <td>{{leaveBalenceData.clavail}}</td>
+                  <td><label class="badge badge-dark">{{leaveBalenceData.clopbal-leaveBalenceData.clavail}}</label></td>
+                  
+                </tr>
+                <tr>
+                  <td>Earned Leave</td>
+                  <td>{{leaveBalenceData.elopbal}}</td>
+                  <td>{{leaveBalenceData.elavail}}</td>                
+                  <td><label class="badge badge-dark">{{leaveBalenceData.elopbal - leaveBalenceData.elavail}}</label></td>
+                  
+
+                </tr>
+                <tr>
+                  <td>Sick Leave</td>
+                  <td>{{leaveBalenceData.slopbal}}</td>
+                  <td>{{leaveBalenceData.slavail}}</td>
+                  <td> <label class="badge badge-dark">{{leaveBalenceData.slopbal - leaveBalenceData.slavail}}</label></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 h-100">
+    <div class="bg-light-md p-0">
+      <div class="container-fluid bg-gradient-warning-cus py-2">
+        <h4 class="mb-0 text-white">Last 45 days attendance</h4>
+      </div>
+      <div class="card-ht">
+        <div class="py-2 cus-scroll-bar">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Shift</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of attendanceList">
+                  <td>{{item.pdate}}</td>
+                  <td>{{item.shiftcode}}</td>
+                  <td><label class="badge badge-warning">{{item.status}}</label></td>                  
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-8 grid-margin stretch-card">
     <div class="card">
-      <div class="card-body">
+      <div class="card-body" *ngIf="cyAttendance.length> 0">
         <div class="d-flex flex-wrap justify-content-between">
-          <h4 class="card-title">Visit And Sales Statistics</h4>
+          <h4 class="card-title">Previous Year Attendance</h4>
           <div id="visit-sale-chart-legend" class="rounded-legend legend-horizontal">
             <ul>
-              <li>
-                <span class="legend-dots"></span>CHN
-              </li>
-              <li>
-                <span class="legend-dots"></span>USA
-              </li>
               <li class="mr-0">
-                <span class="legend-dots"></span>UK
+                <span class="legend-dots"></span>Presentdays
+              </li>
+              <li>
+                <span class="legend-dots"></span>Absent
+              </li>
+              <li>
+                <span class="legend-dots"></span>Leaves
               </li>
             </ul>
           </div>
         </div>
-        <canvas baseChart #visitSaleChart [chartType]="'bar'" [datasets]="visitSaleChartData" [labels]="visitSaleChartLabels" [options]="visitSaleChartOptions" [colors]="visitSaleChartColors"></canvas>
+        <!-- <span > -->
+          <canvas baseChart #visitSaleChart [chartType]="'bar'" [datasets]="visitSaleChartData" [labels]="visitSaleChartLabels" [options]="visitSaleChartOptions" [colors]="visitSaleChartColors"></canvas>
+        <!-- </span> -->
       </div>
     </div>
   </div>
-  <div class="col-lg-5 grid-margin stretch-card">
+  <div class="col-lg-4 grid-margin stretch-card">
     <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Traffic Sources</h4>
+      <div class="card-body" *ngIf="cyAttendance.length > 0">
+        <h4 class="card-title mb-5">Current Month Attendance</h4>
         <canvas baseChart [chartType]="'doughnut'" [datasets]="trafficChartData" [labels]="trafficChartLabels" [options]="trafficChartOptions" [colors]="trafficChartColors"></canvas>
         <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4">
           <ul>
             <li>
-              <span class="legend-dots"></span>Search Engines
-              <span class="float-right">30%</span>
+              <span class="legend-dots"></span>Leaves
+              <span class="float-right">{{currentMonthData.leaves}}</span>
             </li>
             <li>
-              <span class="legend-dots"></span>Direct Click
-              <span class="float-right">30%</span>
+              <span class="legend-dots"></span>Presentdays
+              <span class="float-right">{{currentMonthData.presentdays}}</span>
             </li>
+            
             <li>
-              <span class="legend-dots"></span>Bookmarks Click
-              <span class="float-right">40%</span>
+              <span class="legend-dots"></span>Absent
+              <span class="float-right">{{currentMonthData.absent}}</span>
             </li>
           </ul>
         </div>
@@ -119,7 +234,203 @@
     </div>
   </div>  
 </div>
+
 <div class="row">
+  
+  <!-- <div class="col-md-4 h-100">
+    <div class="bg-light p-4">
+      <h6 class="card-title">My Team Absent</h6>
+      <div class="card-ht">
+        <div class="py-2 cus-scroll-bar">
+          <div class="card rounded mb-2" *ngFor="let item of birthDayList">
+            <div class="card-body p-3">
+              <div class="media" >
+                <img [src]="'data:image/jpg;base64,'+item.imagename" alt="image" class="img-sm mr-3 rounded-circle">
+                <div class="media-body">
+                  <h6 class="mb-1">{{item.emp_name}}</h6>
+                  <p class="mb-0 text-muted">
+                    {{item.desigdesc}}                              
+                  </p>
+                </div>                              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <div class="col-md-4 h-100">
+    <div class="bg-light p-0">
+      <div class="container-fluid bg-gradient-danger-cus py-2">
+        <h4 class="mb-0 text-white">Attendence to be regularize</h4>
+      </div>
+      <div class="card-ht">
+        <div class="py-2 cus-scroll-bar">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Shift</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of attendanceToBeRegularze">
+                  <td>{{item.pdate}}</td>
+                  <td>{{item.shiftcode}}</td>
+                  <td><label class="badge badge-danger">{{item.status}}</label></td>                  
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8 h-100">
+    <div class="bg-light p-0">
+      <div class="container-fluid bg-gradient-lorus-dark-hash-lf py-2">
+        <h4 class="mb-0 text-white">H o l i d a y s</h4>
+      </div>
+      <div class="card-ht">
+        <div class="py-2 cus-scroll-bar">
+          <div class="timeline" *ngIf="holidayList.length > 0">
+            
+            <div class="timeline-wrapper timeline-inverted timeline-wrapper-danger">
+              <div class="timeline-badge"></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h6 class="timeline-title">{{holidayList[0].holidayname}}</h6>
+                </div>
+                <div class="timeline-body">
+                  <p>{{holidayList[0].weekday}}</p>
+                </div>
+                <div class="timeline-footer d-flex align-items-center flex-wrap">
+                    <i class="mdi mdi-calender text-muted me-1"></i>
+                   
+                    <span class="ml-md-auto font-weight-bold">{{holidayList[0].holiday}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="timeline-wrapper timeline-wrapper-success">
+              <div class="timeline-badge"></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h6 class="timeline-title">{{holidayList[1].holidayname}}</h6>
+                </div>
+                <div class="timeline-body">
+                  <p>{{holidayList[1].weekday}}</p>
+                </div>
+                <div class="timeline-footer d-flex align-items-center flex-wrap">
+                    <i class="mdi mdi-calender text-muted me-1"></i>
+                    <span class="ml-md-auto font-weight-bold">{{holidayList[1].holiday}}</span>
+                </div>
+              </div>
+            </div>
+           
+            <div class="timeline-wrapper timeline-inverted timeline-wrapper-info">
+              <div class="timeline-badge"></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h6 class="timeline-title">{{holidayList[2].holidayname}}</h6>
+                </div>
+                <div class="timeline-body">
+                  <p>{{holidayList[2].weekday}}</p>
+                </div>
+                <div class="timeline-footer d-flex align-items-center flex-wrap">
+                    <i class="mdi mdi-calender text-muted me-1"></i>
+                   
+                    <span class="ml-md-auto font-weight-bold">{{holidayList[2].holiday}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="timeline-wrapper timeline-wrapper-primary">
+              <div class="timeline-badge"></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h6 class="timeline-title">{{holidayList[3].holidayname}}</h6>
+                </div>
+                <div class="timeline-body">
+                  <p>{{holidayList[3].weekday}}</p>
+                </div>
+                <div class="timeline-footer d-flex align-items-center flex-wrap">
+                    <i class="mdi mdi-calender text-muted me-1"></i>
+                    <span class="ml-md-auto font-weight-bold">{{holidayList[3].holiday}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="timeline-wrapper timeline-inverted timeline-wrapper-success">
+              <div class="timeline-badge"></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h6 class="timeline-title">{{holidayList[4].holidayname}}</h6>
+                </div>
+                <div class="timeline-body">
+                  <p>{{holidayList[4].weekday}}</p>
+                </div>
+                <div class="timeline-footer d-flex align-items-center flex-wrap">
+                    <i class="mdi mdi-calender text-muted me-1"></i>
+                   
+                    <span class="ml-md-auto font-weight-bold">{{holidayList[4].holiday}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="timeline-wrapper timeline-wrapper-warning">
+              <div class="timeline-badge"></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h6 class="timeline-title">{{holidayList[5].holidayname}}</h6>
+                </div>
+                <div class="timeline-body">
+                  <p>{{holidayList[5].weekday}}</p>
+                </div>
+                <div class="timeline-footer d-flex align-items-center flex-wrap">
+                    <i class="mdi mdi-calender text-muted me-1"></i>
+                    <span class="ml-md-auto font-weight-bold">{{holidayList[5].holiday}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="timeline-wrapper timeline-inverted timeline-wrapper-danger">
+              <div class="timeline-badge"></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h6 class="timeline-title">{{holidayList[6].holidayname}}</h6>
+                </div>
+                <div class="timeline-body">
+                  <p>{{holidayList[6].weekday}}</p>
+                </div>
+                <div class="timeline-footer d-flex align-items-center flex-wrap">
+                    <i class="mdi mdi-calender text-muted me-1"></i>
+                   
+                    <span class="ml-md-auto font-weight-bold">{{holidayList[6].holiday}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="timeline-wrapper timeline-wrapper-success">
+              <div class="timeline-badge"></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h6 class="timeline-title">{{holidayList[7].holidayname}}</h6>
+                </div>
+                <div class="timeline-body">
+                  <p>{{holidayList[7].weekday}}</p>
+                </div>
+                <div class="timeline-footer d-flex align-items-center flex-wrap">
+                    <i class="mdi mdi-calender text-muted me-1"></i>
+                    <span class="ml-md-auto font-weight-bold">{{holidayList[7].holiday}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="row">
   <div class="col-12 grid-margin">
     <div class="card">
       <div class="card-body">
@@ -224,8 +535,8 @@
       </div>
     </div>
   </div>
-</div>
-<div class="row">
+</div> -->
+<!-- <div class="row">
   <div class="col-md-5 grid-margin stretch-card">
     <div class="card custom-dashboard">
         <ngb-datepicker #dp [(ngModel)]="date" (navigate)="date = $event.next" class="w-100 border-0"></ngb-datepicker>
@@ -269,139 +580,4 @@
       </div>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-7 grid-margin grid-margin-md-0 stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Project Status</h4>
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>
-                  #
-                </th>
-                <th>
-                  Name
-                </th>
-                <th>
-                  Due Date
-                </th>
-                <th>
-                  Progress
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  1
-                </td>
-                <td>
-                  Herman Beck
-                </td>
-                <td>
-                  May 15, 2015
-                </td>
-                <td>
-                  <div class="progress">
-                    <div class="progress-bar bg-gradient-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  2
-                </td>
-                <td>
-                  Messsy Adam
-                </td>
-                <td>
-                  Jul 01, 2015
-                </td>
-                <td>
-                  <div class="progress">
-                    <div class="progress-bar bg-gradient-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  3
-                </td>
-                <td>
-                  John Richards
-                </td>
-                <td>
-                  Apr 12, 2015
-                </td>
-                <td>
-                  <div class="progress">
-                    <div class="progress-bar bg-gradient-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  4
-                </td>
-                <td>
-                  Peter Meggik
-                </td>
-                <td>
-                  May 15, 2015
-                </td>
-                <td>
-                  <div class="progress">
-                    <div class="progress-bar bg-gradient-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  5
-                </td>
-                <td>
-                  Edward
-                </td>
-                <td>
-                  May 03, 2015
-                </td>
-                <td>
-                  <div class="progress">
-                    <div class="progress-bar bg-gradient-danger" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  5
-                </td>
-                <td>
-                  Ronald
-                </td>
-                <td>
-                  Jun 05, 2015
-                </td>
-                <td>
-                  <div class="progress">
-                    <div class="progress-bar bg-gradient-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-5 stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <!-- <h4 class="card-title">Todo</h4> -->
-        <!-- <app-todo></app-todo> -->
-      </div>
-    </div>
-  </div>
-</div>
+</div> -->

@@ -89,3 +89,29 @@
     }
   }
 }
+#visit-sale-chart-legend ul li:nth-child(1) .legend-dots {
+  background: linear-gradient(to right, #8cffae, #03c023) !important;
+}
+.grid-margin-mf{
+  margin-bottom: 1.5rem;
+}
+
+.card-ht{
+  min-height: 250px;
+}
+
+.cus-scroll-bar{
+  height: 300px;
+  overflow: auto;
+}
+::-webkit-scrollbar {
+  height: 12px;
+  width: 7px;
+  background: #dfd9d9;
+  border-radius: 15px;
+}
+::-webkit-scrollbar-thumb {
+  background: #393812;
+  -webkit-border-radius: 1ex;
+  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+}
